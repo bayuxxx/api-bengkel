@@ -3,7 +3,7 @@
 ## Installation
 1. Install the required dependencies:
    ```bash
-   npm install
+   npm i
    ```
 
 2. Run the Prisma database migration:
