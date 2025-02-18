@@ -13,21 +13,8 @@ Table User {
   lastLogin DateTime
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
-  auditLogs AuditLog [not null]
   transactions Transaction [not null]
   serviceOrders ServiceOrder [not null]
-  stockLogs StockLog [not null]
-}
-
-Table AuditLog {
-  id String [pk]
-  user User [not null]
-  userId String [not null]
-  action String [not null]
-  description String [not null]
-  timestamp DateTime [default: `now()`, not null]
-  entityType String [not null]
-  entityId String
 }
 
 Table Product {
@@ -44,19 +31,6 @@ Table Product {
   updatedAt DateTime [not null]
   transactionItems TransactionItem [not null]
   serviceItems ServiceItem [not null]
-  stockLogs StockLog [not null]
-}
-
-Table StockLog {
-  id String [pk]
-  product Product [not null]
-  productId String [not null]
-  quantity Int [not null]
-  type String [not null]
-  reason String
-  user User [not null]
-  userId String [not null]
-  timestamp DateTime [default: `now()`, not null]
 }
 
 Table Customer {
@@ -126,7 +100,7 @@ Table ServiceItem {
 }
 
 Enum UserRole {
-  ADMIN
+  SUPER_ADMIN
   CASHIER
   EMPLOYEE
 }
@@ -144,12 +118,6 @@ Enum ServiceStatus {
   COMPLETED
   DELIVERED
 }
-
-Ref: AuditLog.userId > User.id
-
-Ref: StockLog.productId > Product.id
-
-Ref: StockLog.userId > User.id
 
 Ref: Transaction.customerId > Customer.id
 
