@@ -22,11 +22,9 @@ const checkRole = (allowedRoles) => {
   // Specific role check middlewares
   const isSuperAdmin = checkRole(['SUPER_ADMIN']);
   const isAdmin = checkRole(['SUPER_ADMIN', 'CASHIER']);
-  const isStaff = checkRole(['SUPER_ADMIN', 'CASHIER', 'EMPLOYE']);
   
   module.exports = {
     checkRole,
     isSuperAdmin,
     isAdmin,
-    isStaff
   };
